@@ -57,15 +57,25 @@ function Contato() {
 
 export default function App() {
   const [aberta, setAberta] = useState("30-penteada");
+  const [menuAberto, setMenuAberto] = useState(false);
   return (
     <>
       <header className="topo">
-        <a href="#inicio" className="marca" aria-label="Annauê Têxtil do Brasil, início"><img src="/logo.jpg" alt="Annauê Têxtil do Brasil e NOS Camisetas" width="200" height="42" /></a>
-        <nav aria-label="Principal">
-          <a href="#produtos">Produtos</a>
-          <a href="#como-funciona">Como funciona</a>
-          <a href="#perguntas">Perguntas</a>
-          <a href="#contato">Contato</a>
+        <div className="topo-identidade">
+          <a href="#inicio" className="marca" aria-label="Annauê Têxtil do Brasil, início"><img src="/logo.jpg" alt="Annauê Têxtil do Brasil e NOS Camisetas" width="200" height="42" /></a>
+          <button className="menu-toggle" type="button" aria-label={menuAberto ? "Fechar menu" : "Abrir menu"} aria-expanded={menuAberto} aria-controls="navegacao-principal" onClick={() => setMenuAberto(!menuAberto)}>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              {menuAberto
+                ? <path d="M6 6l12 12M18 6L6 18" />
+                : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
+          </button>
+        </div>
+        <nav id="navegacao-principal" className={menuAberto ? "aberto" : ""} aria-label="Principal">
+          <a href="#produtos" onClick={() => setMenuAberto(false)}>Produtos</a>
+          <a href="#como-funciona" onClick={() => setMenuAberto(false)}>Como funciona</a>
+          <a href="#perguntas" onClick={() => setMenuAberto(false)}>Perguntas</a>
+          <a href="#contato" onClick={() => setMenuAberto(false)}>Contato</a>
         </nav>
       </header>
 

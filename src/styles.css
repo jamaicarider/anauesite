@@ -17,8 +17,10 @@ a { color: inherit; }
 :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
 .topo { position: sticky; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: center; padding: 18px var(--pad); background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.topo-identidade { display: flex; align-items: center; }
 .marca { display: block; line-height: 0; }
 .marca img { height: 40px; width: auto; display: block; }
+.menu-toggle { display: none; }
 .topo nav { display: flex; gap: clamp(14px, 3vw, 32px); font-size: 15px; }
 .topo nav a { text-decoration: none; color: var(--mute); }
 .topo nav a:hover { color: var(--ink); }
@@ -87,13 +89,23 @@ input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: 
 .rodape a:focus-visible { outline-color: #fff; }
 
 @media (max-width: 760px) {
+  html { scroll-padding-top: 116px; }
   .duas { grid-template-columns: 1fr; }
   .linha-topo { grid-template-columns: 1fr 24px; }
   .linha-info { grid-column: 1; grid-row: 2; }
   .linha-peso { grid-column: 1; grid-row: 3; }
   .linha-sinal { grid-column: 2; grid-row: 1; }
   .passos li, .form { grid-template-columns: 1fr; }
-  .topo nav a:nth-child(2) { display: none; }
+  .topo { align-items: stretch; flex-direction: column; gap: 0; padding-top: 10px; padding-bottom: 10px; }
+  .topo-identidade { justify-content: space-between; }
+  .marca img { height: 36px; }
+  .menu-toggle { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: var(--ink); cursor: pointer; }
+  .menu-toggle svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .topo nav { display: none; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; padding-top: 8px; font-size: 14px; }
+  .topo nav.aberto { display: grid; }
+  .topo nav a { padding: 5px 0; }
+  .form label, input, select, textarea { min-width: 0; width: 100%; }
+  .form .btn { justify-self: stretch; white-space: normal; }
 }
 
 .destaque { max-width: 46ch; margin: -16px 0 40px; }
